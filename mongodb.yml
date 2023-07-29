@@ -1,30 +1,28 @@
- - name: MongoDB Setup
-   hosts:  all
-   become: yes
-   tasks:
-     - name: Copy MongoDB Yum repo file
-       ansible.builtin.copy:
-         src: mongo.repo
-         dest:  /etc/yum.repos.d/mongo.repo
+- name: roboshop project - mongodb
+  hosts: all
+  become: true
+  tasks:
+    - name: copy repo
+      ansible.builtin.copy:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
 
+    - name: install mongodb
+      ansible.builtin.yum:
+        name: mongodb-org
+        state: installed
 
-     - name: Install MongoDB
-       ansible.builtin.yum:
-         name: mongodb-org
-         state: installed
+    - name: replace ip address
+      ansible.builtin.replace:
+        path: /etc/mongod.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
 
-     - name: Update Listen Address in MongoDB configuration
-       ansible.builtin.replace:
-         path: /etc/mongodb.conf
-         regexp: '127.0.0.1'
-         replace: '0.0.0.0'
-
-     - name: start MongoDB Service
-       ansible.builtin.systemd:
-         name: mongod
-         state: restarted
-         enabled: yes
-
+    - name: start server
+      ansible.builtin.systemd:
+        name: mongod
+        state: restarted
+        enabled: yes
 
 
 
