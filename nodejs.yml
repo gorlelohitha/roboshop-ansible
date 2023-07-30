@@ -7,7 +7,7 @@
 - name : copy repo
   ansible.builtin.copy :
     src : mongodb.repo
-    dest : /etc/yum.repos.d/mongo.repo
+    dest : /etc/yum.repos.d/mongodb.repo
 
 - name : download nodejs
   ansible.builtin.shell : curl -sL https://rpm.nodesource.com/setup_lts.x | bash
