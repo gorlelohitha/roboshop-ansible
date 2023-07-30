@@ -7,7 +7,7 @@
 - name : copy repo
   ansible.builtin.copy :
     src : mongodb.repo
-    dest : /etc/yum.repos.d/mongodb.repo
+    dest : /etc/yum.repos.d/mongo.repo
 
 - name : download nodejs
   ansible.builtin.shell : curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -48,7 +48,7 @@
     state : installed
 
 - name : load schema
-  ansible.builtin.shell :  mongodb --host mongodb-dev.devops17.online </app/schema/{{component}}.js
+  ansible.builtin.shell :  mongo --host mongodb-dev.devopsb17.online </app/schema/{{component}}.js
 
 - name : start {{component}}
   ansible.builtin.systemd :
