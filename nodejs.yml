@@ -48,7 +48,7 @@
     state : installed
 
 - name : load schema
-  ansible.builtin.shell :  mongo --host mongodb-dev.devops17.online </app/schema/{{component}}.js
+  ansible.builtin.shell :  mongodb --host mongodb-dev.devops17.online </app/schema/{{component}}.js
 
 - name : start {{component}}
   ansible.builtin.systemd :
