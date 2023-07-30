@@ -1,4 +1,26 @@
 
+- name : service file
+  ansible.builtin.copy :
+    src : "{{component}}.service"
+    dest : /etc/systemd/system/{{component}}.service
+
+- name : copy repo
+  ansible.builtin.copy :
+    src : mongo.repo
+    dest : /etc/yum.repos.d/mongo.repo
+
+- name : download nodejs
+  ansible.builtin.shell : curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+- name : install nodejs
+  ansible.builtin.yum :
+    name : nodejs
+    state : installed
+
+- name : add user
+  ansible.builtin.user :
+    name : roboshop
+
 - name : remove directory
   ansible.builtin.file :
     name : /app
@@ -26,7 +48,7 @@
     state : installed
 
 - name : load schema
-  ansible.builtin.shell :  mongo --host mongodb-dev.devops17.online </app/schema/{{component}}.js
+  ansible.builtin.shell :  mongo --host mongodb-dev.sdevops28.online </app/schema/{{component}}.js
 
 - name : start {{component}}
   ansible.builtin.systemd :
@@ -34,22 +56,6 @@
     state : restarted
     enabled : yes
     daemon-reload : yes
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
