@@ -1,51 +1,38 @@
-- name: redis
-  hosts: all
-  become: yes
-  tasks:
-    - name: Install Redis Repo
-      ansible.builtin.yum:
-        name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
-        state: Installed
+- - name: roboshop project - redis
+    hosts: all
+    become: true
+    tasks:
+      - name: download repo
+        ansible.builtin.yum:
+          name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+          state: installed
+          disable_gpg_check: true
 
+      - name: enable redis
+        ansible.builtin.shell: yum module enable redis:remi-6.2 -y
 
-    - name: Enable Redis Module
-      ansible.builtin.shell:  yum enable redis:remi-6.2 -y
+      - name: install redis
+        ansible.builtin.yum:
+          name: redis
+          state: installed
 
+      - name: change ip address
+        ansible.builtin.replace:
+          path: /etc/redis.conf
+          regexp: '127.0.0.1'
+          replace: '0.0.0.0'
 
-    - name: install Redis
-      ansible.builtin.yum:
-        name: Redis
-        state: started
+      - name: change ip address
+        ansible.builtin.replace:
+          path: /etc/redis/redis.conf
+          regexp: '127.0.0.1'
+          replace: '0.0.0.0'
 
-
-    - name: update listen address /etc/redis.conf
-      ansible.builtin.replace:
-      path: /etc/redis.conf
-      regexp: '127.0.0.1'
-      replace: '0.0.0.0'
-
-
-    - name: update listen address /etc/redis/redis.conf
-      ansible.builtin.replace:
-      path: /etc/redis/redis.conf
-      regexp: '127.0.0.1'
-      replace: '0.0.0.0'
-
-
-    - name: start Redis
-      ansible.builtin.systemd:
-        name: redis
-        state: restarted
-        enabled: yes
-
-
-
-
-
-
-
-
-
+      - name: start redis
+        ansible.builtin.systemd:
+          name: redis
+          state: restarted
+          enabled: yes
 
 
 
