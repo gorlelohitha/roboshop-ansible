@@ -12,9 +12,9 @@
 
    -      name: configure yum repo for MYSQL
           ansible.builtin.yum:
-
            name: mysql-community-server -y
            state: Installed
+
    -      name: start MYSQL services
           ansible.builtin.systemd:
             name: MYSQL
