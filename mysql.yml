@@ -10,7 +10,7 @@
    -    name: Disable default MYSQL version
         ansible.builtin.shell: yum module disable mysql -y
 
-   -      name: configure yum repo for MYSQL server
+   -      name: configure yum repo for mysql server
           ansible.builtin.yum:
            name: mysql-community-server
            state: Installed
