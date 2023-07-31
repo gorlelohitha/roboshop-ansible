@@ -34,11 +34,13 @@
       ansible.builtin.unarchive:
         src: https://roboshop-artifacts.s3.amazonaws.com/payment.zip
         dest: /app
-        args:
-          chdir: /app
+
 
     - name: install python req
       ansible.builtin.shell: pip3.6 install -r requirements.txt
+      args:
+        chdir: /app
+
 
     - name: start payment service
       ansible.builtin.systemd:
