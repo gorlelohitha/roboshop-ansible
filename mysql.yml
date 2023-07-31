@@ -1,4 +1,4 @@
-- name: MYSQL setup
+- name: mysql setup
   hosts: all
   become: true
   tasks:
