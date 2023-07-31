@@ -1,22 +1,22 @@
-- name: mysql setup
+- name: MYSQL setup
   hosts: all
   become: true
   tasks:
-   -  name: configure yum repo for mysql
+   -  name: configure yum repo for MYSQL
       ansible.builtin.copy:
-        src: mysql.repo
+        src: MYSQL.repo
         dest: /etc/yum.repos.d/mysql.repo
 
-   -    name: Disable default mysql version
+   -    name: Disable default MYSQL version
         ansible.builtin.shell: yum module disable mysql -y
 
-   -      name: configure yum repo for mysql
+   -      name: configure yum repo for MYSQL
           ansible.builtin.repo:
               name: mysql-community-server -y
               state: Installed
-   -      name: start mysql services
+   -      name: start MYSQL services
           ansible.builtin.systemd:
-            name: mysql
+            name: MYSQL
             state: restarted
             enabled: yes
 
