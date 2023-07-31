@@ -1,7 +1,7 @@
-name: shipping setup
-hosts: all
-become: yes
-tasks:
+- name: shipping setup
+  hosts: all
+  become: yes
+  tasks:
   - name: copy shipping service file
     ansible.builtin.copy:
       src: shipping.service
