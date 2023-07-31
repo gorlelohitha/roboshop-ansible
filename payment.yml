@@ -41,7 +41,7 @@
       ansible.builtin.shell: pip3.6 install -r requirements.txt
 
     - name: start payment service
-      ansible.builtin.systemed:
+      ansible.builtin.systemd:
         name: payment
         state: restart
         enabled: yes
