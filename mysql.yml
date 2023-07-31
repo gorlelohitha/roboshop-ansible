@@ -11,9 +11,10 @@
         ansible.builtin.shell: yum module disable mysql -y
 
    -      name: configure yum repo for MYSQL
-          ansible.builtin.repo:
-              name: mysql-community-server -y
-              state: Installed
+          ansible.builtin.yum:
+
+           name: mysql-community-server -y
+           state: Installed
    -      name: start MYSQL services
           ansible.builtin.systemd:
             name: MYSQL
