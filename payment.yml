@@ -46,7 +46,7 @@
     - name: start payment service
       ansible.builtin.systemd:
         name: payment
-        state: restart
+        state: restarted
         enabled: yes
         daemon-reload: yes
 
