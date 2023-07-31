@@ -43,7 +43,7 @@
         state : installed
 
     - name : load schema
-      ansible.builtin.shell : mysql -h mysql-dev.devops17.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+      ansible.builtin.shell : mysql -h mysql-dev.devopsb17.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
 
     - name : start server
       ansible.builtin.systemd :
