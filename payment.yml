@@ -2,7 +2,7 @@
   hosts: all
   become: true
   tasks:
-    - name: copy service file
+    - name: copy service files
       ansible.builtin.copy:
         src: payment.service
         dest: /etc/systemd/system/payment.service

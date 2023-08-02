@@ -3,7 +3,7 @@
   become: yes
   tasks:
 
-    - name: copy shipping service file
+    - name: copy shipping service files
       ansible.builtin.copy:
         src: shipping.service
         dest: /etc/systemd/system/shipping.service

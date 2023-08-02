@@ -29,7 +29,7 @@
         path: /app
         state: directory
 
-    - name : unarchive file
+    - name : unarchive files
       ansible.builtin.unarchive :
         src : https://roboshop-artifacts.s3.amazonaws.com/cart.zip
         dest : /app

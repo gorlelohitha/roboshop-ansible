@@ -5,4 +5,4 @@
     component: user
   tasks:
     - name: NodeJS Setup
-      ansible.builtin.import_tasks: nodejs.yml
+      ansible.builtin.import_tasks: nodejs.main.main.yml
